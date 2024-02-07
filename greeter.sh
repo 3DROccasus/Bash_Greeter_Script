@@ -13,7 +13,7 @@ greet_all_users() {
 }
 
 # Function to list standard users
-list_users() {
+list_normal_users() {
     echo "List of normal users:"
     for user in "${normal_users[@]}"; do
         echo "$user"
@@ -29,7 +29,7 @@ read_log_file() {
 }
 
 # Function to list which users have sudo
-check_sudo_users() {
+list_sudo_users() {
     echo "Users with sudo privileges:"
     for user in "${sudo_users[@]}"; do
         echo "$user"
@@ -62,6 +62,9 @@ help_function() {
 	echo " -c				Check sudoers"
 	echo " -h				This help menu"
 	echo " --rl				Print the last 20 lines of the log"
+	echo " "
+	echo " Additionally the script can be run without options to enter the names in situ"
+	echo " "
 }
 
 # Log on run
@@ -93,7 +96,7 @@ if [[ $# -gt 0 ]]; then
             ;;
         -l)
 			echo "$(date +"%Y-%m-%d %T"): === Greeter was run with -l/list users argument ===" >> greeting_log.txt
-            list_users
+            list_normal_users
             ;;
         --rl)
 			echo "$(date +"%Y-%m-%d %T"): === Greeter was run with --rl/read log argument ===" >> greeting_log.txt
@@ -101,7 +104,7 @@ if [[ $# -gt 0 ]]; then
             ;;
         -c)
 			echo "$(date +"%Y-%m-%d %T"): === Greeter was run with -c/check sudo users argument ===" >> greeting_log.txt
-            check_sudo_users
+            list_sudo_users
             ;;
         -h)
 			echo "$(date +"%Y-%m-%d %T"): === Greeter was run with -h, showing help ===" >> greeting_log.txt
