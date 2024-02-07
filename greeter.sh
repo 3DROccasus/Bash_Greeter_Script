@@ -55,6 +55,7 @@ greet_specified_users() {
 
 # Function to show help
 help_function() {
+	echo "This is the testing_branch version, functions might work differently or not at all"
 	echo "The following options exist:"
 	echo " -a				Greet all users"
 	echo " -l				List normal users"
